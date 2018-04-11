@@ -26,7 +26,15 @@ public class MyDslParsingTest {
   public void loadModel() {
     try {
       StringConcatenation _builder = new StringConcatenation();
-      _builder.append("Hello Xtext!");
+      _builder.append("(define (fib n) ");
+      _builder.newLine();
+      _builder.append("  ");
+      _builder.append("(if (< n 2) n (+ (fib (- n 1)) ");
+      _builder.newLine();
+      _builder.append("  \t\t\t\t\t");
+      _builder.append("(fib (- n 2))))) ");
+      _builder.newLine();
+      _builder.append("(fib 9)");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);

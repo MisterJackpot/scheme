@@ -21,7 +21,10 @@ class MyDslParsingTest {
 	@Test
 	def void loadModel() {
 		val result = parseHelper.parse('''
-			Hello Xtext!
+			(define (fib n) 
+			  (if (< n 2) n (+ (fib (- n 1)) 
+			  					(fib (- n 2))))) 
+			(fib 9)
 		''')
 		Assert.assertNotNull(result)
 		Assert.assertTrue(result.eResource.errors.isEmpty)
