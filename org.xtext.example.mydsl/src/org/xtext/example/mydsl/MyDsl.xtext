@@ -7,3 +7,66 @@ Model:
 	
 Greeting:
 	'Hello' name=ID '!';
+
+terminal DIGIT:
+	('0'..'9');
+
+terminal LETTER:
+	('a'..'z');
+
+terminal WHITE_SPACE:
+	(' ' | '\n');
+
+terminal DELIMITER:
+	(WHITE_SPACE | "(" | ")" | '"' | ";");
+
+terminal SPECIAL__SUBSEQUENT:
+	("." | "+" | "-");
+
+terminal COMMENT:
+	(";"->'\n');
+
+terminal PECULIAR__IDENTIFIER:
+	("+" | "-" | "...");
+
+Atmosphere:
+	WHITE_SPACE | COMMENT;
+
+Intertoken_Space:
+	(Atmosphere)*;
+
+Identifier:
+	Initial (Subsequent)* | PECULIAR__IDENTIFIER;
+
+Initial:
+	LETTER;
+
+Subsequent:
+	Initial | DIGIT | SPECIAL__SUBSEQUENT;
+
+Syntactic_Keyword:
+	Expression_Keyword | "else" | "=>" | "define" | "unquote" | "unquote-splicing";
+
+Expression_Keyword:
+	"quote" | "lambda" | "if" | "set!" | "begin" | "cond" | "and" |
+	"or" | "case" | "let" | "let*" | "letrec" | "do" | "delay" |
+	"quasiquote";
+
+Boolean:
+	"#t" | "#f";
+	
+Special_Initial:
+	 '!' | '\u005C$' | '\u005C%' | '\u005Cverb"&"' | '*' | '/' | ':' | '<' | '='
+     | '>' | '?' | '\u005Cverb" "' | '\u005Cverb"_"' | '\u005Cverb"^';
+     
+Character:
+	'#\u005C'ANY_OTHER | '#\u005C'Unicode_Character
+;	
+Unicode_Character:
+		//TODO
+;     
+
+
+
+
+
